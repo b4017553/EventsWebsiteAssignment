@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Movie List";
+    ViewData["PageHeading"] = "Full Movie List";
+}
+<h1>@ViewData["Title"]</h1>
+
+<section class="wrap">
+    @foreach (var item in Model)
+    {
+        <div class="movieThumb">
+            <div>
+                <img src="~/images/@item.MovieImage" />
+            </div>
+
+            <h3><a asp-controller="Home" asp-action="MovieDetails" asp-route-id="@item.MovieID">@item.MovieTitle</a></h3>
+
+        </div>
+    }
+</section>

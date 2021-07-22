@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_CMS";
+    ViewData["Title"] = "Edit Movies";
+    ViewData["PageHeading"] = "Full Movie List";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button class="cmsbtn">
+        <p><a asp-controller="CMS" asp-action="AddMovie" class="add">Add Movie</a></p>
+</button>
+<div class="container">
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table">
+                    <div class="row header">
+                        <div class="cell">Title</div>
+                        <div class="cell">Edit</div>
+                        <div class="cell">Delete</div>
+                    </div>
+                    @foreach (var item in Model)
+
+                    {
+                        <div class="row">
+                            <div class="cell"><a asp-controller="Home" asp-action="MovieDetails" asp-route-id="@item.MovieID">@item.MovieTitle</a></div>
+                            <div class="cell">
+                                <button class="cmsbtn">
+                                    <p><a asp-controller="CMS" asp-action="UpdateMovie" asp-route-id="@item.MovieID" class="edit">Update</a></p>
+                                </button>
+                            </div>
+                            <div class="cell">
+                                <button class="cmsbtn">
+                                    <p><a asp-controller="CMS" asp-action="DeleteMovie" asp-route-id="@item.MovieID" class="delete">Delete</a></p>
+                                </button>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

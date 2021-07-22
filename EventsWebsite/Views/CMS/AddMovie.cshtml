@@ -1,0 +1,152 @@
+﻿@model EventsWebsite.Models.MovieForm
+@{
+    Layout = "_CMS";
+}
+@section MyScripts {
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/multiselect-dropdown.js"></script>
+}
+<div class="container">
+    <div class="form-body">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Add Film</h3>
+                    <p>Fill in the data below.</p>
+
+                    <form class="requires-validation" novalidate asp-controller="CMS" asp-action="AddMovie">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="MovieTitle">Movie Title</label>
+                                <input asp-for="MovieTitle" class="form-control" type="text" placeholder="Title" required />
+                                <span asp-validation-for="MovieTitle" class="error">
+                                </span>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="MovieCertificate">Movie Certificate</label>
+                                <select asp-for="MovieCertificate" class="form-select mt-3" required>
+                                    <option selected disabled value="">Movie Certificate</option>
+                                    <option value="U">U</option>
+                                    <option value="PG">PG</option>
+                                    <option value="12A">12A</option>
+                                    <option value="12">12</option>
+                                    <option value="15">15</option>
+                                    <option value="18">18</option>
+                                    <option value="R">R</option>
+                                    <option value="All">All</option>
+                                </select>
+                                <span asp-validation-for="MovieCertificate" class="error">
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label asp-for="MovieDescription">Movie Description</label>
+                            <textarea asp-for="MovieDescription" name="MovieDescription" placeholder="Description"></textarea>
+                            <span asp-validation-for="MovieDescription" class="error">
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="MovieImage">Movie Image</label>
+                            <input asp-for="MovieImage" type="file" name="ImageFile"  />
+                            <span asp-validation-for="MovieImage" class="error">
+                            </span>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="IMDbRating">IMDbRating</label>
+                                <input type="number" asp-for="IMDbRating"  min="0" max="10" />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="ReleaseDate">Release Date</label>
+                                <input type="date" asp-for="ReleaseDate" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label asp-for="Year">Year</label>
+                                <input type="number" asp-for="Year" name="year"  min="1700" max="2025"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="RunTime">Run Time</label>
+                                <input type="number" asp-for="RunTime"  min="1" max="500" />
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label asp-for="MoviePrice">Movie Price</label>
+                                <input type="number" asp-for="MoviePrice" />
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Created">Created</label>
+                                <input type="date" asp-for="Created" id="currentdate" />
+                                <input type="time" asp-for="Created" id="currenttime" />
+                                <span asp-validation-for="Created" class="error">
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Modified">Modified</label>
+                                <input type="date" asp-for="Modified" id="currentdate" />
+                                <input type="time" asp-for="Modified" id="currenttime" />
+                                <span asp-validation-for="Modified" class="error">
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Genres">Genres</label>
+                            
+                            <select asp-for="Genres" id="genre" class="form-select mt-3" required multiple multiselect-select-all="true">
+                                @if(@ViewBag.genres != null)
+                                {
+                                    @foreach (var item in @ViewBag.genres)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                }
+                            </select>
+
+                            <span asp-validation-for="Genres" class="error">
+                            </span>
+                            
+                        </div>
+
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <label asp-for="NumVotesIMDb">Number of Votes IMDb</label>
+                                    <input type="number" asp-for="NumVotesIMDb"  min="0" />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="Directors">Directors</label>
+                                    <input type="text" asp-for="Directors" />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label asp-for="URL">URL</label>
+                                    <input type="url" asp-for="URL" />
+                                </div>
+                            </div>
+
+                            <button id="submit" type="submit" value="Add" class="add btn btn-primary">Submit</button>
+
+</form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

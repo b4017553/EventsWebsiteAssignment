@@ -1,0 +1,25 @@
+﻿@model EventsWebsite.Models.Movie
+@{
+
+    ViewData["Title"] = @Model.MovieTitle;
+
+    ViewData["PageHeading"] = @Model.MovieTitle;
+}
+
+<h1>@ViewData["Title"]</h1>
+<section class="wrap">
+
+    <div class="mainImage">
+        <div>
+            <img src="~/images/@Model.MovieImage" />
+        </div>
+        
+    </div>
+    <div class="movieInfo">
+        <h2>@Model.MovieDescription</h2>
+        <p>@Model.MovieCertificate</p>
+        <p>@Model.RunTime</p>
+        <p>@Model.IMDbRating</p>
+    </div>
+</section>
+    

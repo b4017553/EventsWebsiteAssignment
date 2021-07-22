@@ -1,0 +1,55 @@
+﻿@model Register
+@{
+    Layout = "_CMS";
+}
+    <div class="container">
+        <div class="form-body">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h2>Create New User Account</h2>
+                        <form method="post" class="requires-validation">
+
+                            <div class="form-group">
+                                <label asp-for="UserName"></label>
+                                <input type="text" asp-for="UserName" />
+                                <span asp-validation-for="UserName" class="error">
+                                </span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Password"></label>
+                                    <input type="password" asp-for="Password" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="ConfirmPassword"></label></>
+                                    <input type="password" asp-for="ConfirmPassword" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email"></label></td>
+                                <input type="text" asp-for="Email" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FullName"></label>
+                                <input type="text" asp-for="FullName" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="BirthDate"></label>
+                                <input type="date" asp-for="BirthDate" />
+                            </div>
+
+                            <button type="submit">Create</button>
+
+                            <div asp-validation-summary="All" class="message"></div>
+
+                            <h3><a asp-page="/Security/SignIn">Sign-In</a></h3>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

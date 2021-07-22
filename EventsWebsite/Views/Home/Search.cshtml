@@ -1,0 +1,48 @@
+﻿@{
+
+    ViewData["Title"] = "Movie Search";
+
+}
+
+
+    <form asp-action="Search" method="get" id="Search" name="Search">
+        <h1>Search</h1>
+        <div>
+
+            <label for="SearchString">Search by Title: </label>
+            <input type="text" name="SearchString" id="SearchString" />
+            <label for="MovCert">Search by Certificate</label>
+            <select for="MovCert" name="MovCert" id="Movcert">
+
+                @foreach (var item in @ViewBag.Cert)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+
+            </select>
+            <input type="submit" value="Filter" onclick="selectCert()" />
+        </div>
+    </form>
+    <section class="wrap">
+
+            @foreach (var item in Model)
+            {
+                <div class="movieThumb">
+                    <div>
+                        <img src="~/images/@item.MovieImage" />
+                    </div>
+
+                    <h3><a asp-controller="Home" asp-action="MovieDetails" asp-route-id="@item.MovieID">@item.MovieTitle</a></h3>
+
+                </div>
+            }
+
+            @if (Model.Count == 0)
+            {
+
+                <p>Sorry no matches.</p>
+
+            }
+
+        
+    </section>
